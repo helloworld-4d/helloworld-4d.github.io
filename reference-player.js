@@ -68,12 +68,13 @@ function clipButtons(attr,videoId,clips,captionId){
   document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
   video.pause();video.preload='auto';video.src=src;video.load();video.setAttribute('aria-label',button.textContent);
   if(attr==='trajectory'){const lane=button.dataset.trajectory.startsWith('lane-');document.getElementById('pose-caption').textContent=button.textContent+(lane?' · 7 views · 10 fps · 6.1 s. Separate lane-change example. Green: projected future pose trajectory.':' · 7 views · 81 frames · 10 fps · 8.1 s. Same scene and initial frame. Green: projected future pose trajectory.');}
-  if(attr==='layout')document.getElementById('layout-caption').textContent='Generated RGB placeholder · '+button.textContent+'. Layout-editing process recording pending.';
+  if(attr==='layout')document.getElementById('layout-caption').textContent=layoutCaptions[button.dataset.layout];
   if(captionId){const cap=document.getElementById(captionId);if(cap)cap.textContent='Seven-view clip · '+button.textContent;}
  }));
 }
 clipButtons('trajectory','pose-video',{"left":"https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/pose-left-future.mp4?v=pose-future1","straight":"https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/pose-straight-future.mp4?v=pose-future1","right":"https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/pose-right-future.mp4?v=pose-future1","lane-left":"https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/pose-lane-left-future.mp4?v=pose-future1","lane-right":"https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/pose-lane-right-future.mp4?v=pose-future1"});
-clipButtons('layout','layout-video',{intersection:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/layout-intersection-result.mp4?v=fwcenter',boulevard:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/layout-boulevard-result.mp4?v=fwcenter',overpass:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/layout-overpass-result.mp4?v=fwcenter',construction:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/layout-construction-result.mp4?v=fwcenter'});
+const layoutCaptions={"edit-01": "Edit the lead vehicle trajectory so it brakes and stops in the lane, then inspect the seven-view generated result. 4K \u00b7 30 fps \u00b7 23.3 s.", "edit-02": "Insert pedestrians and a motorbike crossing ahead at a junction, with selected recorded objects removed. 4K \u00b7 30 fps \u00b7 22.6 s.", "edit-03": "Insert a parked bus and a pedestrian stepping out from in front of it. 4K \u00b7 30 fps \u00b7 22.6 s.", "edit-04": "Reconstruct the recorded lead-car following scene without object edits. 4K \u00b7 30 fps \u00b7 21.2 s.", "edit-05": "Insert a car cutting in from the left lane, with selected recorded vehicles removed. 4K \u00b7 30 fps \u00b7 22.6 s.", "edit-06": "Insert a stopped car blocking the lane ahead. 4K \u00b7 30 fps \u00b7 18.6 s.", "edit-07": "Insert pedestrians and a motorbike crossing the left-turn path. 4K \u00b7 30 fps \u00b7 21.2 s.", "edit-08": "Replace the recorded oncoming car and insert two pedestrians crossing the U-turn path. 4K \u00b7 30 fps \u00b7 25.1 s.", "edit-09": "Insert a pedestrian and a motorbike crossing the right-turn exit, with selected recorded objects removed. 4K \u00b7 30 fps \u00b7 22.6 s."};
+clipButtons('layout','layout-video',{"edit-01": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-01.mp4?v=20260923", "edit-02": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-02.mp4?v=20260923", "edit-03": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-03.mp4?v=20260923", "edit-04": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-04.mp4?v=20260923", "edit-05": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-05.mp4?v=20260923", "edit-06": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-06.mp4?v=20260923", "edit-07": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-07.mp4?v=20260923", "edit-08": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-08.mp4?v=20260923", "edit-09": "https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/layout-edit-09.mp4?v=20260923"});
 const weatherCaptions={
  sunny:'A driving scene under clear blue skies, with bright sunlight and crisp shadows.',
  overcast:'A driving scene under a gray overcast sky, with soft diffuse daylight.',
@@ -89,10 +90,13 @@ document.querySelectorAll('[data-weather]').forEach(button=>button.addEventListe
  const key=button.dataset.weather;if(!weatherCaptions[key]||!weatherVideo)return;
  document.querySelectorAll('[data-weather]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
  weatherVideo.setAttribute('aria-label','Environment control, '+button.textContent);weatherVideo.pause();weatherVideo.src='https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/env-'+key+'.mp4?v=fwcenter';weatherVideo.load();
- document.getElementById('weather-caption').textContent='Seven views in one clip · same boulevard clip · 10 fps · 10.1 s. '+weatherCaptions[key];
+ 
 }));
 const specialCaptions={
- construction:'Seven views in one clip · 10 fps · 10.1 s. A large road construction site occupies the middle of the roadway directly ahead. A yellow tracked excavator is digging into a wide section of torn-up asphalt, its boom lowered and bucket scooping earth. Bright orange cones, red-and-white barriers, piles of soil and broken pavement clearly mark the central work zone.'
+  "construction": "A road construction zone with excavators, exposed ground, and red-and-white barriers around the driving path.",
+  "crossing": "Pedestrians cross an urban street among vehicles and roadside activity.",
+  "traffic": "Dense urban traffic surrounds the vehicle, with cars occupying adjacent lanes.",
+  "ebike": "An electric-bike rider travels ahead in the same lane on a sunny urban road."
 };
 const specialVideo=document.getElementById('special-video');
 document.querySelectorAll('[data-special]').forEach(button=>button.addEventListener('click',()=>{
@@ -140,8 +144,8 @@ document.querySelectorAll('video').forEach(v=>{if(!v.closest('[data-surround]')&
 
 // Closed-loop demo: switch between policy rollouts. Each clip keeps its own encoded stream.
 const closedLoopClips={
- sim1:{src:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/0923-v1-gt_helloworld_exhibition_8s.mp4?v=0923',text:'Closed-loop rollout with Alpamayo 1.5 in HWsimulator, beside the road-test replay. Night clip, 10 fps, 8.0 s. The policy keeps distance from a stopped lead vehicle, then opens a gap because a stopped car blocks an immediate merge to the right.'},
- sim2:{src:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/0923-v2-gt_helloworld_exhibition_8s.mp4?v=0923',text:'The same closed-loop setup on another night clip, 10 fps, 8.0 s. The road test is stopped behind a truck on the right side of the lane; the simulated rollout nudges left to clear it.'}
+ sim1:{src:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/0923-v1-gt_helloworld_exhibition_8s.mp4?v=0923',text:'Recorded driving on the left and an Alpamayo 1.5 closed-loop rollout in HelloWorld on the right. The policy follows a slow-moving lead vehicle and adjusts its gap while a stopped vehicle in the right lane limits an immediate merge.'},
+ sim2:{src:'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/0923-v2-gt_helloworld_exhibition_8s.mp4?v=0923',text:'Recorded driving on the left and an Alpamayo 1.5 closed-loop rollout in HelloWorld on the right. The simulated vehicle nudges left to pass a stopped truck, then continues along the cleared lane.'}
 };
 const closedLoopVideo=document.getElementById('closed-loop-video');
 const closedLoopText=document.getElementById('closed-loop-description');
@@ -152,10 +156,17 @@ if(closedLoopVideo)document.querySelectorAll('[data-closedloop]').forEach(button
  if(closedLoopText)closedLoopText.textContent=clip.text;
 }));
 
+const longSceneCaptions={
+ following:'Following traffic along an urban road, with changing roadside scenery and vehicles ahead.',
+ 'additional-01':'Driving along an elevated highway under overcast skies, with passing traffic and roadside barriers.',
+ 'additional-05':'Driving along a sunny urban avenue lined with trees and landscaped medians.',
+ 'additional-06':'Driving alongside large trucks beneath an elevated roadway, with close-range vehicles and changing occlusions.'
+};
 const longVideo=document.getElementById('long-video');
 if(longVideo)document.querySelectorAll('[data-long]').forEach(button=>button.addEventListener('click',()=>{
  const key=button.dataset.long;if(!key)return;
+ const caption=document.getElementById('long-caption');if(caption)caption.textContent=longSceneCaptions[key]||button.textContent;
  document.querySelectorAll('[data-long]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
- document.getElementById('long-caption').textContent=button.textContent+' · 7 views · '+(button.dataset.longFrames||401)+' frames · 10 fps · '+(button.dataset.longDuration||'40.1')+' s.';longVideo.setAttribute('aria-label','Long-horizon generation, '+button.textContent);
+ longVideo.setAttribute('aria-label','Long-horizon generation, '+button.textContent);
  longVideo.pause();longVideo.src=button.dataset.longSrc||('https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/real/single/long-'+key+'.mp4?v=fwcenter');longVideo.load();
 }));

@@ -140,3 +140,7 @@ video.native-mosaic{height:auto!important;aspect-ratio:auto!important}.seven-vid
 .hero-motion-toggle{position:absolute;bottom:30px;right:30px;border:1px solid #bde7ef45;background:#164960b3;color:#dcf3f8;border-radius:6px;padding:7px 10px;font-size:11px;line-height:20px;cursor:pointer}
 .hero-motion-toggle:hover{background:#235e73}
 @media(max-width:700px){.hero-motion-toggle{bottom:18px;right:16px;font-size:10px;padding:5px 8px}.report-page .hero .cover-explore{left:20px;transform:none;padding-left:0;font-size:11px}}
+
+.report-coming-soon{cursor:default;opacity:.75}.report-source-pending{white-space:nowrap}
+
+.metric-details>.metrics{margin-top:0}.metric-details+.metric-details{margin-top:16px}.metric-details>summary{line-height:1.6;padding-right:12px}.metric-details>summary:focus-visible{outline:2px solid var(--accent);outline-offset:5px}
