@@ -1,5 +1,7 @@
 # HelloWorld project page
 
-Trial deployment of the current report page. GitHub Pages serves HTML, styles, scripts, figures and the report PDF. Videos and point-cloud data are loaded unchanged from the existing media server, which must remain available. No media is recompressed.
+GitHub Pages serves the website, figures, and losslessly compressed point-cloud chunks. Videos are hosted in this repository's `media-20260923` GitHub Release. No development-server dependency remains.
 
-The current public source is the deployed report snapshot, preserving its recent design and content updates. For independent long-term hosting, migrate the media to object storage/CDN and update media URLs.
+Video candidates preserve source resolution, frame rate and duration. Selected encodes use H.264 CRF 18 / preset slow; already compact operation demos retain their original bytes. Point-cloud chunks use reversible 16-byte-record byte shuffling followed by gzip, decoded progressively in the browser without dropping or quantizing points.
+
+Edit this published snapshot carefully: its media loader differs from the development server's script-based loader. Do not overwrite it with an older development snapshot.

@@ -5,13 +5,13 @@
   if (!video || !caption) return;
   const clips = {
     edit: {
-      src: 'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/product-demo-native10-en-v2.mp4?v=native10-20260923-v2',
+      src: 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/product-demo-native10-en-v2.mp4?v=native10-20260923-v2',
       ratio: '2496 / 1394',
       label: 'Edit a Scene: interactive scene editing',
       caption: 'Edit a driving scene to generate controllable, multi-modal training data.'
     },
     describe: {
-      src: 'https://dev-07061353.ds-hpc-prod-bd-su01.hellorobotaxi.top/studio/namespaces/infra-sim/devspaces/dev-07061353/jupyter/files/helloworld-report-share-20260923/assets/videos/describe-scene-demo.mp4?v=complete-10x-20260923',
+      src: 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/describe-scene-demo.mp4?v=complete-10x-20260923',
       ratio: '16 / 9',
       label: 'Describe a Scene: agent workflow and generated scenarios',
       caption: 'Describe a scene through an agent, inspect a generated example, and explore nine multi-modal scenarios.'

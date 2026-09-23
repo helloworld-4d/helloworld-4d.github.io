@@ -1,36 +1,24 @@
-/* Script transport is required by the Notebook's opaque-origin sandbox. */
+/* Progressive lossless point-cloud chunks served by GitHub Pages. */
 (() => {
   const nativeFetch = window.fetch.bind(window);
   const chunkSize = 4 * 1024 * 1024;
   const cache = new Map();
-  const pending = new Map();
-  window.__hwChunk = value => {
-    const src = document.currentScript?.src;
-    const item = pending.get(src);
-    if (item) item.value = value;
-  };
-  function chunk(url, signal) {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      script.src = url;
-      const key = script.src;
-      const item = {};
-      function cleanup() {
-        clearTimeout(timer); if (pending.get(key) === item) pending.delete(key); script.remove();
-        signal?.removeEventListener('abort', abort);
-      }
-      function abort() { cleanup(); reject(new DOMException('Cancelled', 'AbortError')); }
-      const timer = setTimeout(() => { cleanup(); reject(Error('Point-cloud download timed out')); }, 30000);
-      pending.set(key, item);
-      script.onload = () => {
-        const value = item.value; cleanup();
-        value === undefined ? reject(Error('Missing point-cloud chunk')) : resolve(value);
-      };
-      script.onerror = () => { cleanup(); reject(Error('Point-cloud download failed')); };
-      if (signal?.aborted) { abort(); return; }
-      signal?.addEventListener('abort', abort, { once: true });
-      document.head.append(script);
-    });
+  // Each chunk preserves the exact 16-byte point records; byte reordering is lossless.
+  async function chunk(url, signal) {
+    const response = await nativeFetch(url, { signal });
+    if (!response.ok) throw Error('Point-cloud download failed: ' + response.status);
+    if (!response.body || typeof DecompressionStream === 'undefined') {
+      throw Error('This browser does not support gzip point-cloud decoding. Please use a current browser.');
+    }
+    const shuffled = new Uint8Array(await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
+    if (signal?.aborted) throw new DOMException('Cancelled', 'AbortError');
+    if (shuffled.length % 16) throw Error('Invalid point-cloud record length');
+    const count = shuffled.length / 16;
+    const raw = new Uint8Array(shuffled.length);
+    for (let byte = 0; byte < 16; byte++) {
+      for (let point = 0; point < count; point++) raw[point * 16 + byte] = shuffled[byte * count + point];
+    }
+    return raw;
   }
   window.hwLoadLidar = async (key, { signal, onProgress = () => {} } = {}) => {
     const item = window.__hwLidar[key];
@@ -53,11 +41,11 @@
     signal?.addEventListener('abort', abort, { once: true });
     async function loadPart({ url, index }) {
       if (local.signal.aborted) throw new DOMException('Cancelled', 'AbortError');
-      const raw = atob(await chunk(url, local.signal));
+      const raw = await chunk(url, local.signal);
       if (local.signal.aborted) throw new DOMException('Cancelled', 'AbortError');
       const offset = index * chunkSize;
       if (raw.length !== Math.min(chunkSize, item.bytes-offset)) throw Error('Point-cloud length mismatch');
-      for (let i=0;i<raw.length;i++) entry.bytes[offset+i] = raw.charCodeAt(i);
+      entry.bytes.set(raw, offset);
       entry.loaded.add(index); report();
     }
     async function worker() {
