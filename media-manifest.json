@@ -1,5 +1,4 @@
 {
-  "release": "media-20260923",
   "videos": [
     {
       "source_path": "assets/real/lidar/wx/rain.mp4",
@@ -254,66 +253,66 @@
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-01.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-01.mp4",
-      "bytes": 15058450,
-      "sha256": "sha256:76ef45f932414a7055c9f2f7025c2244ee9cb0a8807be298f6471e1bc3445440",
+      "source_path": "assets/videos/layout-edit-v2-01.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-01.mp4",
+      "bytes": 15085136,
+      "sha256": "sha256:220d690f7fc4b3ea6aa12fa1f505cb76c8bd871dc1ef097be22ae5b28d933028",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-02.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-02.mp4",
-      "bytes": 23148632,
-      "sha256": "sha256:0973684271bf38bb52f03a19a20aa9a126986b590bbb73a0cd2a51cad8022330",
+      "source_path": "assets/videos/layout-edit-v2-02.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-02.mp4",
+      "bytes": 25069187,
+      "sha256": "sha256:31a768321499763d228c88632a564b0c5b78f3f51251d887aa2aa3b17eaa3d05",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-03.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-03.mp4",
-      "bytes": 17030065,
-      "sha256": "sha256:7d2723f4a9e436d1cd7641166b6e1bf46ac2c1d97cd8fd1ed58e6d206c152ffb",
+      "source_path": "assets/videos/layout-edit-v2-03.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-03.mp4",
+      "bytes": 20686510,
+      "sha256": "sha256:972fb934072516a27d995bfca0d3ea799775da29e16cc090cacb5fa355e57163",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-04.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-04.mp4",
-      "bytes": 14985667,
-      "sha256": "sha256:fc611a47f3370f15ac61d0ed60010bd8e7b2f927684f0c5a54db43d3ca71a274",
+      "source_path": "assets/videos/layout-edit-v2-04.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-04.mp4",
+      "bytes": 15394511,
+      "sha256": "sha256:1a63dc3d07459d8545adc991f5a3efe775df9e276a0116ac8c022f953403ae8b",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-05.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-05.mp4",
-      "bytes": 24247739,
-      "sha256": "sha256:4f0d02773b843246c08a02e7e4f9a41d9442753da8fce93e99f1fe0e93454f70",
+      "source_path": "assets/videos/layout-edit-v2-05.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-05.mp4",
+      "bytes": 26135950,
+      "sha256": "sha256:e59907590e3afd407dcc044117b42cc066183d4680402982dd46bf4b907d6425",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-06.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-06.mp4",
-      "bytes": 31889563,
-      "sha256": "sha256:92dc9aa1ce4f9510eb1e796cb07f89bffdca2f56e290b2005137e43d085bcc0c",
+      "source_path": "assets/videos/layout-edit-v2-06.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-06.mp4",
+      "bytes": 17914516,
+      "sha256": "sha256:e6ed7a9a73521b4981b1669bde41461f3e442eff0834ff02411ea8d3e88fa68d",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-07.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-07.mp4",
-      "bytes": 24756625,
-      "sha256": "sha256:7e542d4ca5aeb1ea94388a4f072abc49bb9f75fdd2cf31ee724ca7b9c7cfbff3",
+      "source_path": "assets/videos/layout-edit-v2-07.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-07.mp4",
+      "bytes": 23917036,
+      "sha256": "sha256:12bc76d51f602d4e1f438ad722b6d09947e1d61480efadcc2e28890f45723cbc",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-08.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-08.mp4",
-      "bytes": 22875666,
-      "sha256": "sha256:75a495b4d39907135113f458ffd68951b32faeb1c514bf09914b8341ceef5edf",
+      "source_path": "assets/videos/layout-edit-v2-08.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-08.mp4",
+      "bytes": 22956181,
+      "sha256": "sha256:c05415564a0425b572f7db2477ccae26669f06d72d68d2ae3baa7b8ef5a599d4",
       "original_retained": true
     },
     {
-      "source_path": "assets/videos/layout-edit-09.mp4",
-      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/layout-edit-09.mp4",
-      "bytes": 26294848,
-      "sha256": "sha256:48e8f6965b888cdf675f4fee96459a079b76f0b278bf4668c680d26aaac47d28",
+      "source_path": "assets/videos/layout-edit-v2-09.mp4",
+      "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-09.mp4",
+      "bytes": 23233783,
+      "sha256": "sha256:9ed361c064fa364a646e52a44d22dcc4b0a8490fbbc8a04b3239be28b1018e07",
       "original_retained": true
     },
     {
@@ -337,5 +336,9 @@
       "sha256": "sha256:88bcf1082f8c9953747f1a882c4a987d7bd8cf0e937b78e21818c81787503ea4",
       "original_retained": true
     }
+  ],
+  "releases": [
+    "media-20260923",
+    "layout-20260925"
   ]
 }
