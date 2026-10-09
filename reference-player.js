@@ -15,7 +15,7 @@ function build(host){
  const group={host,videos,key:host.dataset.surround,activate:null,controller:null};
  async function set(key){
   group.controller?.pause();group.key=key;const item=sources[key];const current=++version;overlay=null;
-  videos.forEach((v,i)=>{v.preload='auto';v.src=item.views[i];v.load();});draw();
+  videos.forEach((v,i)=>{v.preload='auto';window.hwVideoSource.set(v, item.views[i]);v.load();});draw();
   if(item.overlay){try{const r=await fetch(item.overlay);if(!r.ok)throw Error('Trajectory unavailable');const data=await r.json();if(current===version){overlay=data;draw();}}catch(e){status(e.message);}}
  }
  function status(text){let p=host.querySelector('.video-error');if(!p){p=document.createElement('p');p.className='video-error';host.append(p);}p.textContent=text;}
@@ -26,7 +26,7 @@ function build(host){
  const video=videos[3];if(video.requestVideoFrameCallback){const tick=()=>{draw();video.requestVideoFrameCallback(tick);};video.requestVideoFrameCallback(tick);}else video.addEventListener('timeupdate',draw);
  video.addEventListener('seeked',draw);
  videos.forEach(v=>v.addEventListener('error',()=>status('Video could not be loaded. Please reload the page.')));
- group.activate=()=>{if(!videos[0].getAttribute('src'))set(group.key);};group.set=set;groups.set(host,group);return group;
+ group.activate=()=>{if(!window.hwVideoSource.get(videos[0]))set(group.key);};group.set=set;groups.set(host,group);return group;
 }
 function controller(items,box,observe){
  const videos=items.flatMap(g=>g.videos),master=items[0].videos[3];
@@ -66,7 +66,7 @@ function clipButtons(attr,videoId,clips,captionId){
  document.querySelectorAll(`[data-${attr}]`).forEach(button=>button.addEventListener('click',()=>{
   const src=clips[button.dataset[attr]];if(!src)return;
   document.querySelectorAll(`[data-${attr}]`).forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
-  video.pause();video.preload='auto';video.src=src;video.load();video.setAttribute('aria-label',button.textContent);
+  video.pause();video.preload='auto';window.hwVideoSource.set(video, src);video.load();video.setAttribute('aria-label',button.textContent);
   if(attr==='trajectory'){const lane=button.dataset.trajectory.startsWith('lane-');document.getElementById('pose-caption').textContent=button.textContent+(lane?' · 7 views · 10 fps · 6.1 s. Separate lane-change example. Green: projected future pose trajectory.':' · 7 views · 81 frames · 10 fps · 8.1 s. Same scene and initial frame. Green: projected future pose trajectory.');}
   if(attr==='layout')document.getElementById('layout-caption').textContent=layoutCaptions[button.dataset.layout];
   if(captionId){const cap=document.getElementById(captionId);if(cap)cap.textContent='Seven-view clip · '+button.textContent;}
@@ -89,7 +89,7 @@ const weatherVideo=document.getElementById('weather-video');
 document.querySelectorAll('[data-weather]').forEach(button=>button.addEventListener('click',()=>{
  const key=button.dataset.weather;if(!weatherCaptions[key]||!weatherVideo)return;
  document.querySelectorAll('[data-weather]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
- weatherVideo.setAttribute('aria-label','Environment control, '+button.textContent);weatherVideo.pause();weatherVideo.src='https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/env-'+key+'.mp4';weatherVideo.load();
+ weatherVideo.setAttribute('aria-label','Environment control, '+button.textContent);weatherVideo.pause();window.hwVideoSource.set(weatherVideo, 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/env-'+key+'.mp4');weatherVideo.load();
  
 }));
 const specialCaptions={
@@ -102,7 +102,7 @@ const specialVideo=document.getElementById('special-video');
 document.querySelectorAll('[data-special]').forEach(button=>button.addEventListener('click',()=>{
  const key=button.dataset.special;if(!key||!specialVideo)return;
  document.querySelectorAll('[data-special]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
- specialVideo.setAttribute('aria-label','Special scenario, '+button.textContent);specialVideo.pause();specialVideo.src='https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/special-'+key+'.mp4';specialVideo.load();
+ specialVideo.setAttribute('aria-label','Special scenario, '+button.textContent);specialVideo.pause();window.hwVideoSource.set(specialVideo, 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/special-'+key+'.mp4');specialVideo.load();
  document.getElementById('special-caption').textContent=specialCaptions[key]||('Seven views in one clip · 10 fps · 10.1 s · '+button.textContent);
 }));
 const distillPair=[document.getElementById('distill-teacher'),document.getElementById('distill-student')];
@@ -131,7 +131,7 @@ if(distillPair.every(Boolean)){
  document.querySelectorAll('[data-distill]').forEach(tab=>tab.addEventListener('click',()=>{
   const key=tab.dataset.distill;if(!['turn','lane','slight','bus'].includes(key))return;pause();
   document.querySelectorAll('[data-distill]').forEach(b=>b.setAttribute('aria-pressed',String(b===tab)));
-  distillPair.forEach((v,i)=>{v.src='https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/distill-'+key+'-'+(i?'dmd':'teacher')+'.mp4';v.load();});seek.value=0;clock.textContent='0.0 / 6.1 s';
+  distillPair.forEach((v,i)=>{window.hwVideoSource.set(v, 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/distill-'+key+'-'+(i?'dmd':'teacher')+'.mp4');v.load();});seek.value=0;clock.textContent='0.0 / 6.1 s';
   document.getElementById('distill-caption').textContent=tab.textContent+' · Teacher 20 steps (left) / DMD 4 steps (right) · 7 views each · 10 fps · 6.1 s. Synchronized playback.';
   if(comparisonVisible)start();
  }));
@@ -152,7 +152,7 @@ const closedLoopText=document.getElementById('closed-loop-description');
 if(closedLoopVideo)document.querySelectorAll('[data-closedloop]').forEach(button=>button.addEventListener('click',()=>{
  const clip=closedLoopClips[button.dataset.closedloop];if(!clip)return;
  document.querySelectorAll('[data-closedloop]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
- closedLoopVideo.pause();closedLoopVideo.preload='auto';closedLoopVideo.src=clip.src;closedLoopVideo.load();
+ closedLoopVideo.pause();closedLoopVideo.preload='auto';window.hwVideoSource.set(closedLoopVideo, clip.src);closedLoopVideo.load();
  if(closedLoopText)closedLoopText.textContent=clip.text;
 }));
 
@@ -168,5 +168,5 @@ if(longVideo)document.querySelectorAll('[data-long]').forEach(button=>button.add
  const caption=document.getElementById('long-caption');if(caption)caption.textContent=longSceneCaptions[key]||button.textContent;
  document.querySelectorAll('[data-long]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
  longVideo.setAttribute('aria-label','Long-horizon generation, '+button.textContent);
- longVideo.pause();longVideo.src=button.dataset.longSrc||('https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/long-'+key+'.mp4');longVideo.load();
+ longVideo.pause();window.hwVideoSource.set(longVideo, button.dataset.longSrc||('https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/long-'+key+'.mp4'));longVideo.load();
 }));

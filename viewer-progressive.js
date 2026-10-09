@@ -3845,7 +3845,7 @@ async function Nh(i){
    En.dataset.loadedBytes=String(loaded);En.dataset.totalBytes=String(total);
    if(!shown && loaded>=manifest.frames[0].count*16){
     shown=true;En.dataset.firstFrameBytes=String(loaded);En.dataset.firstFrameMs=String(Math.round(performance.now()-hwStarted));Ze=manifest;Ph=buffer;
-    if(!Se.src.endsWith(manifest.video)){Se.pause();Se.src=manifest.video;Se.load();}
+    if(window.hwVideoSource.get(Se)!==manifest.video){Se.pause();window.hwVideoSource.set(Se,manifest.video);Se.load();}
     else if(Se.readyState)Se.currentTime=0;
     Sl(0,true);En.dataset.ready="true";loading.hidden=true;
    }

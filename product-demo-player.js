@@ -22,7 +22,7 @@
     if (!clip || button.getAttribute('aria-pressed') === 'true') return;
     video.pause();
     buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-    video.src = clip.src;
+    window.hwVideoSource.set(video, clip.src);
     video.style.aspectRatio = clip.ratio;
     video.setAttribute('aria-label', clip.label);
     caption.textContent = clip.caption;
