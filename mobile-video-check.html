@@ -1,21 +1,24 @@
 <!doctype html>
 <html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>手机视频播放检查</title>
-<style>body{font:16px/1.6 system-ui;margin:24px auto;padding:0 16px;max-width:760px;color:#202735}button{font:inherit;padding:10px 14px;margin:4px;border:1px solid #aaa;border-radius:8px;background:white}button[aria-pressed=true]{background:#254c87;color:white}video{width:100%;background:#000;margin-top:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f6;padding:16px}h1{font-size:24px}</style>
-<h1>手机视频播放检查</h1><p>三项测试使用完全相同的视频文件，没有降低分辨率或重新编码。请依次点按钮，观察画面是否播放，再将下方状态发回。</p>
-<div><button data-test="release">1 · 当前 Releases 链接</button><button data-test="pages">2 · Pages 同站视频</button><button data-test="typed">3 · Releases 指定 MP4 类型</button></div>
+<style>body{font:16px/1.6 system-ui;margin:24px auto;padding:0 16px;max-width:760px;color:#202735}select{max-width:100%;font:inherit;padding:8px;margin-bottom:12px}button{font:inherit;padding:10px 14px;margin:4px;border:1px solid #aaa;border-radius:8px;background:white}button[aria-pressed=true]{background:#254c87;color:white}video{width:100%;background:#000;margin-top:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f6;padding:16px}h1{font-size:24px}</style>
+<h1>手机视频播放检查</h1><p>选择视频后点「3 · 指定 MP4 类型」。这里独立播放，不使用主页自动播放或同步脚本。同站对照仅提供产品演示。</p>
+<label>测试视频 <select id="clip"><option value="0">产品演示（已成功）</option><option value="1">闭环仿真</option><option value="2">Pose Control</option><option value="3">Layout 编辑</option><option value="4">LiDAR RGB</option><option value="5">蒸馏 Teacher</option><option value="6">蒸馏 DMD</option><option value="7">天气控制</option><option value="8">特殊场景</option><option value="9">长时序</option></select></label><div><button data-test="release">1 · 当前 Releases 链接</button><button data-test="pages">2 · Pages 同站视频</button><button data-test="typed">3 · Releases 指定 MP4 类型</button></div>
 <video id="test-video" controls muted playsinline preload="none"></video><pre id="status" aria-live="polite">请选择一个测试。</pre>
 <script>
 const video = document.querySelector('video');
-const release = 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/product-demo-native10-en-v2.mp4';
+const clips = [{"id": "product-demo-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/product-demo-native10-en-v2.mp4"}, {"id": "closed-loop-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/0923-v1-gt_helloworld_exhibition_8s.mp4"}, {"id": "pose-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/pose-left-future.mp4"}, {"id": "layout-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/layout-20260925/layout-edit-v2-01.mp4"}, {"id": "lidar-input-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/sunset.mp4"}, {"id": "distill-teacher", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/distill-turn-teacher.mp4"}, {"id": "distill-student", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/distill-turn-dmd.mp4"}, {"id": "weather-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/env-snow.mp4"}, {"id": "special-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/special-construction.mp4"}, {"id": "long-video", "url": "https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/long-following.mp4"}];
+const select=document.querySelector("#clip");
+select.addEventListener("change",()=>{video.pause();document.querySelector('[data-test="pages"]').disabled=select.value!=="0";document.querySelector('[data-test="typed"]').click()});
 let test = '', generation = 0, events = [], playError = '';
 function status(event) {
  if(event) events.push(event);
- document.querySelector('#status').textContent = JSON.stringify({test, events:events.slice(-15), time:video.currentTime, readyState:video.readyState, networkState:video.networkState, videoSize:[video.videoWidth,video.videoHeight], error:video.error ? {code:video.error.code,message:video.error.message}:null, playError, userAgent:navigator.userAgent},null,2);
+ document.querySelector('#status').textContent = JSON.stringify({test, clip:clips[Number(select.value)].id, paused:video.paused, buffered:Array.from({length:video.buffered.length},(_,i)=>[video.buffered.start(i),video.buffered.end(i)]), decodedFrames:video.getVideoPlaybackQuality?.().totalVideoFrames, events:events.slice(-15), time:video.currentTime, readyState:video.readyState, networkState:video.networkState, videoSize:[video.videoWidth,video.videoHeight], error:video.error ? {code:video.error.code,message:video.error.message}:null, playError, userAgent:navigator.userAgent},null,2);
 }
 for (const event of ['loadstart','loadedmetadata','loadeddata','canplay','playing','waiting','stalled','error','ended']) video.addEventListener(event,()=>status(event));
 video.addEventListener('timeupdate',()=>status());
+setInterval(()=>{if(test)status()},1000);
 for(const button of document.querySelectorAll('button')) button.addEventListener('click',()=>{
- const current = ++generation;video.pause();video.removeAttribute('src');video.replaceChildren();
+ const release=clips[Number(select.value)].url;const current = ++generation;video.pause();video.removeAttribute('src');video.replaceChildren();
  test=button.dataset.test;events=[];playError='';
  for(const other of document.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===button));
  if(test==='typed'){const source=document.createElement('source');source.src=release;source.type='video/mp4';source.addEventListener('error',()=>{if(current===generation)status('source-error')});video.append(source)}
