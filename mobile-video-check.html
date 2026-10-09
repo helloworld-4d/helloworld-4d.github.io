@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>手机视频播放检查</title>
+<style>body{font:16px/1.6 system-ui;margin:24px auto;padding:0 16px;max-width:760px;color:#202735}button{font:inherit;padding:10px 14px;margin:4px;border:1px solid #aaa;border-radius:8px;background:white}button[aria-pressed=true]{background:#254c87;color:white}video{width:100%;background:#000;margin-top:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f0f3f6;padding:16px}h1{font-size:24px}</style>
+<h1>手机视频播放检查</h1><p>三项测试使用完全相同的视频文件，没有降低分辨率或重新编码。请依次点按钮，观察画面是否播放，再将下方状态发回。</p>
+<div><button data-test="release">1 · 当前 Releases 链接</button><button data-test="pages">2 · Pages 同站视频</button><button data-test="typed">3 · Releases 指定 MP4 类型</button></div>
+<video id="test-video" controls muted playsinline preload="none"></video><pre id="status" aria-live="polite">请选择一个测试。</pre>
+<script>
+const video = document.querySelector('video');
+const release = 'https://github.com/helloworld-4d/helloworld-4d.github.io/releases/download/media-20260923/product-demo-native10-en-v2.mp4';
+let test = '', generation = 0, events = [], playError = '';
+function status(event) {
+ if(event) events.push(event);
+ document.querySelector('#status').textContent = JSON.stringify({test, events:events.slice(-15), time:video.currentTime, readyState:video.readyState, networkState:video.networkState, videoSize:[video.videoWidth,video.videoHeight], error:video.error ? {code:video.error.code,message:video.error.message}:null, playError, userAgent:navigator.userAgent},null,2);
+}
+for (const event of ['loadstart','loadedmetadata','loadeddata','canplay','playing','waiting','stalled','error','ended']) video.addEventListener(event,()=>status(event));
+video.addEventListener('timeupdate',()=>status());
+for(const button of document.querySelectorAll('button')) button.addEventListener('click',()=>{
+ const current = ++generation;video.pause();video.removeAttribute('src');video.replaceChildren();
+ test=button.dataset.test;events=[];playError='';
+ for(const other of document.querySelectorAll('button'))other.setAttribute('aria-pressed',String(other===button));
+ if(test==='typed'){const source=document.createElement('source');source.src=release;source.type='video/mp4';source.addEventListener('error',()=>{if(current===generation)status('source-error')});video.append(source)}
+ else video.src=test==='pages'?'mobile-video-check.mp4':release;
+ video.load();video.play().catch(error=>{if(current===generation){playError=error.name+': '+error.message;status('play-rejected')}});status('selected');
+});
+</script></html>
