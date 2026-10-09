@@ -1,4 +1,4 @@
-/* Keep an explicit media type for iOS when Releases serves octet-stream. */
+/* Resolve legacy clip templates to verified Pages URLs; retain the iOS MP4 hint. */
 window.hwVideoSource = {
   get(video) {
     return video.querySelector('source')?.getAttribute('src') || video.getAttribute('src') || '';
@@ -12,6 +12,6 @@ window.hwVideoSource = {
     // A video-level src takes precedence over typed child sources.
     video.removeAttribute('src');
     source.type = 'video/mp4';
-    source.src = url;
+    source.src = window.hwMediaPages?.[url] || url;
   }
 };
