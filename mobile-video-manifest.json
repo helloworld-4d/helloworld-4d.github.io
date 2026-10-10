@@ -1,0 +1,242 @@
+[
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-2/distill-lane-dmd.mp4?v=1",
+    "mobile": "mobile-videos/distill-lane-dmd.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 9839994,
+    "sha256": "b61e71461718922d3f078329c9eed631daf21ac6690c66ea81e1699a9a43e455"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-1/distill-bus-teacher.mp4?v=1",
+    "mobile": "mobile-videos/distill-bus-teacher.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 6325146,
+    "sha256": "3c19d3b42c7a8aa209bf34ed50bbaafe93c2a02ac82b4a6bb7073c64a940c4f8"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-1/distill-bus-dmd.mp4?v=1",
+    "mobile": "mobile-videos/distill-bus-dmd.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 8100200,
+    "sha256": "18276ebbbf0f72b8a33a5185f1f57e9d71db2c6d6fc16782f7f7058daae4f666"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-2/distill-lane-teacher.mp4?v=1",
+    "mobile": "mobile-videos/distill-lane-teacher.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 9518059,
+    "sha256": "fd005672c4f8da841a2165976a8cf31eaa540cf9a0c2a43de048532536b4adcb"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-1/distill-slight-dmd.mp4?v=1",
+    "mobile": "mobile-videos/distill-slight-dmd.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 9728543,
+    "sha256": "cc2093c41f74f7a8e9d770d1f3a94088585380dc66b3330dc709e6a6565990c5"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-1/distill-slight-teacher.mp4?v=1",
+    "mobile": "mobile-videos/distill-slight-teacher.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 9385778,
+    "sha256": "2b41e97907ceac98fd503f1320148cd45838771d0f5a3bb74fc400dbaa02041e"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-2/distill-turn-teacher.mp4?v=1",
+    "mobile": "mobile-videos/distill-turn-teacher.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 4148680,
+    "sha256": "15e7f7919e3b11ee86b0094b5d73333e5dbbde147945c7fe07b2ed81ae2128e9"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-1/distill-turn-dmd.mp4?v=1",
+    "mobile": "mobile-videos/distill-turn-dmd.mp4",
+    "source": {
+      "width": 3856,
+      "height": 2896,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "output": {
+      "width": 1438,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "6.100000",
+      "nb_frames": "61"
+    },
+    "bytes": 5497694,
+    "sha256": "88331abb5da96c57a359cd86280120019260415e00fde90efbaddf110cdb3249"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-2/0923-v1-gt_helloworld_exhibition_8s.mp4?v=1",
+    "mobile": "mobile-videos/0923-v1-gt_helloworld_exhibition_8s.mp4",
+    "source": {
+      "width": 3840,
+      "height": 2660,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "8.000000",
+      "nb_frames": "80"
+    },
+    "output": {
+      "width": 1558,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "8.000000",
+      "nb_frames": "80"
+    },
+    "bytes": 3247983,
+    "sha256": "4abee7ba845d6441f516a01e1ba05277e4afff1b5568097e51019b2d7cbc1f4e"
+  },
+  {
+    "original": "https://helloworld-4d.github.io/helloworld-media-1/0923-v2-gt_helloworld_exhibition_8s.mp4?v=1",
+    "mobile": "mobile-videos/0923-v2-gt_helloworld_exhibition_8s.mp4",
+    "source": {
+      "width": 3840,
+      "height": 2660,
+      "pix_fmt": "yuv420p",
+      "level": 60,
+      "r_frame_rate": "10/1",
+      "duration": "8.000000",
+      "nb_frames": "80"
+    },
+    "output": {
+      "width": 1558,
+      "height": 1080,
+      "pix_fmt": "yuv420p",
+      "level": 41,
+      "r_frame_rate": "10/1",
+      "duration": "8.000000",
+      "nb_frames": "80"
+    },
+    "bytes": 1893854,
+    "sha256": "35052b8875456f44aa92d1db6d2485c7e45b3d6e66224fb31373bfe787d802ff"
+  }
+]

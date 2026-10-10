@@ -112,19 +112,19 @@ if(distillPair.every(Boolean)){
  const duration=()=>Math.min(...distillPair.map(v=>Number.isFinite(v.duration)?v.duration:6.1));
  function update(){seek.max=duration();seek.value=master.currentTime;clock.textContent=master.currentTime.toFixed(1)+' / '+duration().toFixed(1)+' s';}
  function pause(){wanted=false;generation++;distillPair.forEach(v=>v.pause());button.textContent='Play both';}
- async function resume(){
-  if(!wanted||starting||!distillPair.every(v=>v.readyState>=3))return;
+ async function resume(force=false){
+  if(!wanted||starting||(force!==true&&!distillPair.every(v=>v.readyState>=3)))return;
   starting=true;const token=generation;
   try{await Promise.all(distillPair.map(v=>v.play()));if(token===generation&&wanted)button.textContent='Pause both';else distillPair.forEach(v=>v.pause());}
   catch(e){if(token===generation){pause();clock.textContent='Unable to play. Please try again.';}}
   finally{starting=false;if(wanted&&token!==generation)resume();}
  }
- function start(){if(document.hidden||wanted)return;wanted=true;button.textContent='Loading…';if(master.currentTime>=duration()-.05)master.currentTime=0;student.currentTime=master.currentTime;distillPair.forEach(v=>{v.muted=true;v.playsInline=true;v.preload='auto';});resume();}
+ function start(){if(document.hidden||wanted)return;wanted=true;button.textContent='Loading…';if(master.currentTime>=duration()-.05)master.currentTime=0;student.currentTime=master.currentTime;distillPair.forEach(v=>{v.muted=true;v.playsInline=true;v.preload='auto';});resume(true);}
  button.addEventListener('click',()=>{if(wanted)pause();else start();});
  seek.addEventListener('input',()=>{pause();distillPair.forEach(v=>v.currentTime=Number(seek.value));update();});
  distillPair.forEach(v=>{
   v.addEventListener('canplay',resume);v.addEventListener('seeked',resume);v.addEventListener('loadedmetadata',update);
-  v.addEventListener('waiting',()=>{if(wanted){distillPair.forEach(x=>x.pause());button.textContent='Loading…';}});
+  v.addEventListener('waiting',()=>{if(wanted&&!starting){distillPair.forEach(x=>x.pause());button.textContent='Loading…';}});
   v.addEventListener('ended',pause);v.addEventListener('error',()=>{pause();clock.textContent='Video could not be loaded.';});
  });
  master.addEventListener('timeupdate',()=>{update();if(wanted&&!master.paused&&!student.seeking&&Math.abs(student.currentTime-master.currentTime)>.09)student.currentTime=master.currentTime;});
